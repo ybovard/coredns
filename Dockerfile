@@ -7,7 +7,6 @@ RUN adduser -D -h /home/coredns coredns
 RUN git clone https://github.com/coredns/coredns.git ; chown -R coredns /opt/coredns
 USER coredns
 RUN cd /opt/coredns ; make
-COPY Corefile /opt/coredns/Corefile
 
 ENTRYPOINT [ "/opt/coredns/coredns" ]
-CMD [ "-dns.port" ,"5353", "-conf", "/opt/coredns/Corefile" ]
+CMD [ "-dns.port" ,"1053" ]
