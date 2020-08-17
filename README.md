@@ -6,13 +6,13 @@ Because this user is not privileged, the standard DNS port 53 cannot be used.
 
 # Usage
 ```
-docker run --rm -p 53:1053 -ti ybovard/coredns:latest
+docker run --rm -p 53:1053 -p 53:1053/udp -ti ybovard/coredns:latest
 ```
 
 To test:
 
 ```
-$ dig @localhost -p 53 whoami.example.org +tcp
+$ dig @localhost -p 53 whoami.example.org
 
 ; <<>> DiG 9.16.1-Ubuntu <<>> @localhost -p 53 whoami.example.org +tcp
 ; (1 server found)
