@@ -8,5 +8,7 @@ RUN git clone https://github.com/coredns/coredns.git ; chown -R coredns /opt/cor
 USER coredns
 RUN cd /opt/coredns ; make
 
+EXPOSE 1053/tcp 1053/tcp
+
 ENTRYPOINT [ "/opt/coredns/coredns" ]
 CMD [ "-dns.port" ,"1053" ]
