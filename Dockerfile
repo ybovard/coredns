@@ -7,10 +7,10 @@ ARG COREDNS_VERSION
 RUN apk update ; apk upgrade ; apk add git make
 
 WORKDIR /opt
-RUN adduser -D -h /home/coredns coredns
+RUN adduser -D --uid=1000 -h /home/coredns coredns
 RUN git clone https://github.com/coredns/coredns.git ; chown -R coredns /opt/coredns
 
-USER coredns
+USER 1000
 WORKDIR /opt/coredns
 RUN git checkout tags/v${COREDNS_VERSION} ; make
 
