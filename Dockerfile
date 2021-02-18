@@ -14,6 +14,13 @@ USER 1000
 WORKDIR /opt/coredns
 RUN git checkout tags/v${COREDNS_VERSION} ; make
 
+USER root
+RUN setcap cap_net_bind_service=+ep /opt/coredns \
+  && setcap -v cap_net_bind_service=+ep /opt/coredns \
+  && setcap cap_net_bind_service=+ep /opt/coredns/coredns \
+  && setcap -v cap_net_bind_service=+ep /opt/coredns/coredns \
+
+USER 1000
 EXPOSE 1053/tcp 1053/tcp
 
 ENTRYPOINT [ "/opt/coredns/coredns" ]
